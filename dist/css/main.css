@@ -119,6 +119,9 @@ body{
 	padding: 8px;
 	padding: .5rem;
 }
+.btn-agregar:focus{
+		outline: none !important;
+	}
 .btn-gasto{
 	border: none;
 	color: #ffffff;
@@ -130,6 +133,9 @@ body{
 	padding: 8px;
 	padding: .5rem;
 }
+.btn-gasto:focus{
+		outline: none !important;
+	}
 .relative-element label{
 		width: 100px;
 	}
@@ -137,3 +143,16 @@ body{
 		width: calc(100% - 120px);
 		height: 30px;
 	}
+.relative-element input:focus{
+			border: 2px solid rgb(160, 160, 160);
+			outline: none;
+		}
+.texto-success{
+	border: 2px solid;
+	padding: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #43ac6a;
+	background-color: #43ac6a;
+	background-color: rgba(67, 172, 106, 0.30000000000000004);  
+}

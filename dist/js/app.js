@@ -6,6 +6,7 @@ let presupuestoTotal;
 let gasto;
 
 //listeners
+window.addEventListener('DOMContentLoaded', cargaDatosInicio, false);
 agregarPresupuesto.addEventListener('click', agregaPresupuesto, false);
 agregarGasto.addEventListener('click', agregaGasto, false);
 
@@ -19,10 +20,35 @@ class Presupuesto {
 }
 
 class Interfaz {
-
+   //inicializa presupuesto
+   imprimirMensaje(mensaje, tipo){
+      const nodoMensaje = document.getElementById('mensaje');
+      nodoMensaje.classList.add('mensaje');
+      if (tipo == 'error') {
+         nodoMensaje.classList.add('texto-danger');
+      }else{
+         nodoMensaje.classList.add('texto-success');
+      }
+      nodoMensaje.innerText = mensaje;
+      setTimeout(function(){
+         nodoMensaje.innerText = '';
+         nodoMensaje.className= 'mensaje';
+      }, 3000);
+   }
 }
 
 //funciones
+function cargaDatosInicio(){
+   let compruebaLS = obtenerLocalStorage();
+   if(compruebaLS){
+      const total = document.getElementById('total');
+      const restante = document.getElementById('restante');
+      total.innerHTML = compruebaLS.presupuesto;
+      restante.innerHTML = compruebaLS.restante;
+   }else{
+     return false;
+   }
+}
 function agregaPresupuesto(e){
    let datosLS = obtenerLocalStorage();
    if (!datosLS) {
@@ -38,7 +64,7 @@ function agregaPresupuesto(e){
       }
    }else{
       //Si hay datos en el LS
-      alert('Tenemos un presupuesto guardado');
+      alert('Ya tienes un presupuesto guardado');
       return false;
    }
    
@@ -57,9 +83,12 @@ function compruebaDatos(e){
       //Todo ok
       //Creamos la instacia del presupuesto(con el restante == al presupuesto)
       presupuestoTotal = new Presupuesto(presupuesto);
-      console.log(presupuestoTotal);
       //Guardamos el objeto en el Local Storage(como JSON)
       localStorage.setItem('datosLS', JSON.stringify(presupuestoTotal));
+      //Instanciamos una vista para el mensaje
+      const ui = new Interfaz();
+      ui.imprimirMensaje('Presupuesto guardado!', 'success');
+      cargaDatosInicio();//imprimimos en el DOM
    }
 }
 

@@ -14,6 +14,9 @@
 	box-shadow: none;
    border-radius: 0;
 	padding: $padding;
+	&:focus{
+		outline: none !important;
+	}
 }
 @define-mixin title $ancho, $color, $borde, $size{
 	width: $ancho;
@@ -57,5 +60,17 @@ body{
 	input{
 		width: calc(100% - 120px);
 		height: 30px;
+		&:focus{
+			border: 2px solid color(var(--iron) blackness(50%));
+			outline: none;
+		}
 	}
+}
+.texto-success{
+	border: 2px solid;
+	padding: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--chateaugreen);
+	background-color: color(var(--chateaugreen) alpha(-70%));  
 }
