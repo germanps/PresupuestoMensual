@@ -7,6 +7,10 @@
 	--btn-gradient: #fd324e;
 	--btn-gradient-start: color(var(--btn-gradient) blackness(30%));
 	--btn-gradient-end: color(var(--btn-gradient) lightness(10%) hue(10%));
+
+	--monza: #dc0028;
+	--white: #ffffff;
+	--cornflowerblue: #6195ED;
 	/* ========= Font-size ========= */
 	--fontSize: 18px;
 }

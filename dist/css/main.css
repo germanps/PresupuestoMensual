@@ -1,4 +1,47 @@
 /* ==================== Imports ==================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 /* ================== Variables ================== */
 :root{
 	/* ========= Colores ========= */
@@ -42,62 +85,42 @@
   content: "\e903";
 }
 /* ==================== Mixins ==================== */
-.squalHero{
-	background: url('../images/background.png') #466173;
-	padding: 20px;
-	height: 500px;
+/****************** CUSTOM *************/
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
 }
-@media (-webkit-min-device-pixel-ratio: 2){
-.squalHero{
-		background: url('../images/background2x.png') #466173
+.header img{
+		width: 100%;
+		height: auto; 
+	}
+.wrapper{
+	padding: 16px;
+	padding: 1rem;
 }
-	}
-.squalHero-header{
-		display: -webkit-box;
-		display: flex;
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		        flex-direction: row;
-		-webkit-box-pack: justify;
-		        justify-content: space-between;
-		color: #606060;
-		-webkit-transform: .3s all ease;
-		        transform: .3s all ease;
-	}
-.squalHero-logo{
-		transition: all .3s ease-in;
-	}
-.squalHero-logo:hover{
-			filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="4" /></filter></svg>#filter');
-			-webkit-filter: blur(4px);
-			        filter: blur(4px);
-			cursor: pointer;
-		}
-.squalHero-copy-title{
-			font-size: 45px;
-		}
-.squalHero-copy-btn{
-			border-radius: 12px;
-			border: none;
-			color: #fafafa;
-			padding: 7px 12px;
-			cursor: pointer;
-			text-decoration: none;
-			font-size: 18px;
-			background: #fd324e;
-			background: linear-gradient(to left, rgb(179, 51, 68), rgb(50, 9, 1));
-		}
-.squalFooter{
-	background-color: #273b47;
+.title{
+	margin: 16px 0;
+	margin: 1rem 0;
 }
-.squalFooter-form-btn{
-			border-radius: 12px;
-			border: none;
-			color: #fafafa;
-			padding: 7px 12px;
-			cursor: pointer;
-			text-decoration: none;
-			font-size: 18px;
-			background: #fd324e;
-			background: linear-gradient(to left, rgb(179, 51, 68), rgb(50, 9, 1));
-		}
+.btn-agregar{
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+	text-decoration: none;
+	background-color: #dc0028;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 8px;
+	padding: .5rem;
+}
+.btn-gasto{
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+	text-decoration: none;
+	background-color: #6195ED;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 8px;
+	padding: .5rem;
+}

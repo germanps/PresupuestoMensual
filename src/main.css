@@ -1,58 +1,44 @@
 /* ==================== Imports ==================== */
+@import './reset.css';
 @import './variables.css';
 @import './iconfont.css';
 
 /* ==================== Mixins ==================== */
-@define-mixin btn $textColor, $bgColor, $bgColorStart, $bgColorEnd {
-	border-radius: 12px;
+
+@define-mixin btn $color, $bgColor, $padding {
 	border: none;
-	color: $textColor;
-	padding: 7px 12px;
+	color: $color;
 	cursor: pointer;
 	text-decoration: none;
-	font-size: var(--fontSize);
-	background: $bgColor;
-	background: linear-gradient(to left, $bgColorStart, $bgColorEnd);
+	background-color: $bgColor;
+	box-shadow: none;
+   border-radius: 0;
+	padding: $padding;
 }
 
 
-.squalHero{
-	background: url('../images/background.png') var(--bg-header);
-	padding: 20px;
-	height: 500px;
-	@media (--retina){
-		background: url('../images/background2x.png') var(--bg-header);
-	}
-	&-header{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		color: #606060;
-		transform: .3s all ease;
-	}
-	&-logo{
-		transition: all .3s ease-in;
-		&:hover{
-			filter: blur(4px);
-			cursor: pointer;
-		}
-	}
-	&-copy{
-		&-title{
-			font-size: calc(var(--fontSize) * 2.5);
-		}
-		&-btn{
-			@mixin btn var(--bg-body), var(--btn-gradient), var(--btn-gradient-start), var(--btn-gradient-end);
-		}
+
+/****************** CUSTOM *************/
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+}
+.header{
+	img{
+		width: 100%;
+		height: auto; 
 	}
 }
+.wrapper{
+	padding: 1rem;
+}
 
-.squalFooter{
-	background-color: var(--bg-footer);
-
-	&-form{
-		&-btn{
-			@mixin btn var(--bg-body), var(--btn-gradient), var(--btn-gradient-start), var(--btn-gradient-end);
-		} 
-	}
+.title{
+	margin: 1rem 0;
+}
+.btn-agregar{
+	@mixin btn var(--white), var(--monza), .5rem;
+}
+.btn-gasto{
+	@mixin btn var(--white), var(--cornflowerblue), .5rem;
 }

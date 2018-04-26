@@ -3,23 +3,63 @@
   <head>
     <title>Presupuesto Mensual</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Allerta' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
   </head>
   <body>
-    <header>
-      <img src="" alt="">
+    <header class="header">
+      <img src="./img/header.png" alt="header">
     </header>
-    <section id="" class="wrapper">
-      <article class="item"> 
-
-      </article>
-      <article class="item">
-
-      </article>
+    <section id="app" class="container-fluid">
+      <div class="row"> 
+        <div class="col-md-12">
+          <h2 class="title">Presupuestos</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="relative-element">
+              <button id="agregarPresupuesto" class="btn-agregar">Agregar presupuesto</button>
+            </div>
+          </div>
+          <h3 class="title">Agregar gasto</h3>
+          <div class="form-group">
+            <form action="#" id="agregarGasto">
+              <div class="relative-element">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="relative-element">
+                <label for="cantidad">Cantidad:</label>
+                <input type="text" id="cantidad">
+              </div>
+            </div>
+            <div class="relative-element">
+                <input type="submit" class="btn-gasto" value="Agregar gasto">
+              </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h3 class="title">Gastos</h3>
+          <div id="gastos">
+            <ul class="list-group"></ul>
+          </div>
+          <div id="presupuesto">
+            <div class="alert alert-primary">
+              <p>Presupuesto: € <span id="total"></span></p>
+            </div>
+            <div class="restante alert alert-success">
+              <p>Restante: € <span id="restante"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <footer class="pres-footer">
 
