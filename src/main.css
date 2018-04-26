@@ -15,7 +15,15 @@
    border-radius: 0;
 	padding: $padding;
 }
-
+@define-mixin title $ancho, $color, $borde, $size{
+	width: $ancho;
+	color: $color;
+	border-bottom: $borde;
+	font-size: $size;
+	padding: 10px 0;
+	margin: 1rem auto;
+	font-weight: bold;
+}
 
 
 /****************** CUSTOM *************/
@@ -34,11 +42,20 @@ body{
 }
 
 .title{
-	margin: 1rem 0;
+	@mixin title 100%, #dc0028, 2px solid var(--iron), 14px;
 }
 .btn-agregar{
 	@mixin btn var(--white), var(--monza), .5rem;
 }
 .btn-gasto{
 	@mixin btn var(--white), var(--cornflowerblue), .5rem;
+}
+.relative-element{
+	label{
+		width: 100px;
+	}
+	input{
+		width: calc(100% - 120px);
+		height: 30px;
+	}
 }

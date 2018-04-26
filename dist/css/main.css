@@ -99,8 +99,14 @@ body{
 	padding: 1rem;
 }
 .title{
-	margin: 16px 0;
-	margin: 1rem 0;
+	width: 100%;
+	color: #dc0028;
+	border-bottom: 2px solid #d6d8d8;
+	font-size: 14px;
+	padding: 10px 0;
+	margin: 16px auto;
+	margin: 1rem auto;
+	font-weight: bold;
 }
 .btn-agregar{
 	border: none;
@@ -124,3 +130,10 @@ body{
 	padding: 8px;
 	padding: .5rem;
 }
+.relative-element label{
+		width: 100px;
+	}
+.relative-element input{
+		width: calc(100% - 120px);
+		height: 30px;
+	}

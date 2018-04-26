@@ -14,36 +14,43 @@
       <img src="./img/header.png" alt="header">
     </header>
     <section id="app" class="container-fluid">
+
       <div class="row"> 
         <div class="col-md-12">
           <h2 class="title">Presupuestos</h2>
         </div>
       </div>
+
+
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <div class="relative-element">
               <button id="agregarPresupuesto" class="btn-agregar">Agregar presupuesto</button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
           <h3 class="title">Agregar gasto</h3>
           <div class="form-group">
-            <form action="#" id="agregarGasto">
-              <div class="relative-element">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="relative-element">
-                <label for="cantidad">Cantidad:</label>
-                <input type="text" id="cantidad">
-              </div>
-            </div>
             <div class="relative-element">
-                <input type="submit" class="btn-gasto" value="Agregar gasto">
-              </div>
-          </form>
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="relative-element">
+              <label for="cantidad">Cantidad:</label>
+              <input type="text" id="cantidad">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="relative-element">
+              <button id=agregarGasto class="btn-gasto">Agregar gasto</button>
+            </div>
+          </div>
         </div>
         <div class="col-md-6">
           <h3 class="title">Gastos</h3>
@@ -60,6 +67,7 @@
           </div>
         </div>
       </div>
+      
     </section>
     <footer class="pres-footer">
 
