@@ -98,6 +98,13 @@ body{
 	padding: 16px;
 	padding: 1rem;
 }
+.alert{
+	padding: 0;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	padding-left: 5px;
+}
 .title{
 	width: 100%;
 	color: #dc0028;
@@ -155,4 +162,8 @@ body{
 	color: #43ac6a;
 	background-color: #43ac6a;
 	background-color: rgba(67, 172, 106, 0.30000000000000004);  
+}
+h3.title{
+	font-size: 12px;
+	border-bottom: none;
 }

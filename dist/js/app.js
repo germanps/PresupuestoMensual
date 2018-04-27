@@ -13,9 +13,13 @@ agregarGasto.addEventListener('click', agregaGasto, false);
 
 //clases
 class Presupuesto {
-   constructor(presupuesto){
+   constructor(presupuesto, restante){
       this.presupuesto = Number(presupuesto);
-      this.restante = Number(presupuesto);
+      this.restante = Number(restante);
+   }
+   // Resta el presupuesto
+   restaGasto(cantidad){
+     return this.restante -= Number(cantidad);
    }
 }
 
@@ -35,11 +39,13 @@ class Interfaz {
          nodoMensaje.className= 'mensaje';
       }, 3000);
    }
+   
 }
 
 //funciones
 function cargaDatosInicio(){
    let compruebaLS = obtenerLocalStorage();
+   console.log(compruebaLS);
    if(compruebaLS){
       const total = document.getElementById('total');
       const restante = document.getElementById('restante');
@@ -70,10 +76,31 @@ function agregaPresupuesto(e){
    
 }
 function agregaGasto(e){
-
+  const nombreGasto = document.getElementById('nombre').value;
+  const cantidadGasto = document.getElementById('cantidad').value;
+  if (nombreGasto !== '' || cantidadGasto !== '') {
+    if (!/^([0-9])*$/.test(cantidadGasto)) {
+      alert('Cantidad erronea, prueba de nuevo');
+    }else{
+      //Todo OK => hacemos la mandanga
+      console.log(`nombre:${nombreGasto} cantidad:${cantidadGasto}`);
+      //Obtenemos datos del LS
+      let localS = obtenerLocalStorage();
+      //Reinstanciamos el presupuesto total con el nuevo restante
+      presupuestoTotal = new Presupuesto(localS.presupuesto, localS.restante);
+      //Restamos del presupuesto
+      presupuestoTotal.restaGasto(cantidadGasto);
+      //Volvemos a meter el objeto al local storage
+      localStorage.setItem('datosLS', JSON.stringify(presupuestoTotal));
+      console.log(presupuestoTotal);    
+    }
+    
+  }else{
+    console.log('datos erroneos');
+  }
 }
 function compruebaDatos(e){
-   if (!/^([0-9])*$/.test(presupuesto)) {
+   if (!/^([0-9])*$/.test(presupuesto) || presupuesto === '') {
       //Error de entrada de datos por el prompt
       alert(`Este presupuesto es incorrecto: ${presupuesto}, prueba de nuevo`);
       //Reseteamos el presupuesto a blanco
@@ -82,7 +109,7 @@ function compruebaDatos(e){
    }else{
       //Todo ok
       //Creamos la instacia del presupuesto(con el restante == al presupuesto)
-      presupuestoTotal = new Presupuesto(presupuesto);
+      presupuestoTotal = new Presupuesto(presupuesto, presupuesto);
       //Guardamos el objeto en el Local Storage(como JSON)
       localStorage.setItem('datosLS', JSON.stringify(presupuestoTotal));
       //Instanciamos una vista para el mensaje
