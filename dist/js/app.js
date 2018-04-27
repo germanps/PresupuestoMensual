@@ -13,19 +13,19 @@ agregarGasto.addEventListener('click', agregaGasto, false);
 
 //clases
 class Presupuesto {
-   constructor(presupuesto, restante){
-      this.presupuesto = Number(presupuesto);
-      this.restante = Number(restante);
-   }
-   // Resta el presupuesto
-   restaGasto(cantidad){
-     return this.restante -= Number(cantidad);
-   }
+    constructor(presupuesto, restante){
+        this.presupuesto = Number(presupuesto);
+        this.restante = Number(restante);
+    }
+    // Resta el presupuesto
+    restaGasto(cantidad){
+      return this.restante -= Number(cantidad);
+    }
 }
 
 class Interfaz {
-   //inicializa presupuesto
-   imprimirMensaje(mensaje, tipo){
+    //inicializa presupuesto
+    imprimirMensaje(mensaje, tipo){
       const nodoMensaje = document.getElementById('mensaje');
       nodoMensaje.classList.add('mensaje');
       if (tipo == 'error') {
@@ -39,7 +39,22 @@ class Interfaz {
          nodoMensaje.className= 'mensaje';
       }, 3000);
    }
-   
+
+   imprimirGastoLista(nombre, cantidad){
+     const listado = document.querySelector('#gastos .list-group');
+     const listItem = document.createElement('li');
+     listItem.className = 'gastos-item';
+     listItem.innerHTML = `
+              <span class="nombre">${nombre}</span>
+              <span class="cantidad">${cantidad}</span>
+          `;
+      listado.appendChild(listItem);
+      console.log(listItem);
+   }
+   imprimirRestante(){
+     const restante = document.getElementById('restante');
+     restante.innerHTML = presupuestoTotal.restante;    
+   }
 }
 
 //funciones
@@ -92,7 +107,10 @@ function agregaGasto(e){
       presupuestoTotal.restaGasto(cantidadGasto);
       //Volvemos a meter el objeto al local storage
       localStorage.setItem('datosLS', JSON.stringify(presupuestoTotal));
-      console.log(presupuestoTotal);    
+      console.log(presupuestoTotal);
+      const ui = new Interfaz();
+      ui.imprimirGastoLista(nombreGasto, cantidadGasto);
+      ui.imprimirRestante();
     }
     
   }else{
