@@ -55,23 +55,35 @@ class Interfaz {
      const restante = document.getElementById('restante');
      restante.innerHTML = presupuestoTotal.restante;    
    }
+   insertarGastoLS(nombreGasto, cantidadGasto){
+     const gasto = {
+       nombre: nombreGasto,
+       gasto: cantidadGasto
+     }
+     guardarGastoLS(gasto);
+   }
 }
 
 //funciones
 function cargaDatosInicio(){
-   let compruebaLS = obtenerLocalStorage();
-   console.log(compruebaLS);
-   if(compruebaLS){
+  //Cargar presupuesto del localstorage
+   const compruebaPresuLS = obtenerPresuLocalStorage();
+   const compruebaGastosLS = obtenerGastosLocalStorage();
+   console.log(compruebaPresuLS);
+   console.log(compruebaGastosLS);
+   if(compruebaPresuLS){
       const total = document.getElementById('total');
       const restante = document.getElementById('restante');
-      total.innerHTML = compruebaLS.presupuesto;
-      restante.innerHTML = compruebaLS.restante;
+      total.innerHTML = compruebaPresuLS.presupuesto;
+      restante.innerHTML = compruebaPresuLS.restante;
    }else{
      return false;
    }
+   //Cargar gastos del localStorage
+   leerLocalStorageGastos();
 }
 function agregaPresupuesto(e){
-   let datosLS = obtenerLocalStorage();
+   let datosLS = obtenerPresuLocalStorage();
    if (!datosLS) {
       //Si no hay datos en el LS hacemos la mandanga
       if (presupuesto == '' || presupuesto == null) {
@@ -98,9 +110,9 @@ function agregaGasto(e){
       alert('Cantidad erronea, prueba de nuevo');
     }else{
       //Todo OK => hacemos la mandanga
-      console.log(`nombre:${nombreGasto} cantidad:${cantidadGasto}`);
+      //console.log(`nombre:${nombreGasto} cantidad:${cantidadGasto}`);
       //Obtenemos datos del LS
-      let localS = obtenerLocalStorage();
+      let localS = obtenerPresuLocalStorage();
       //Reinstanciamos el presupuesto total con el nuevo restante
       presupuestoTotal = new Presupuesto(localS.presupuesto, localS.restante);
       //Restamos del presupuesto
@@ -111,6 +123,7 @@ function agregaGasto(e){
       const ui = new Interfaz();
       ui.imprimirGastoLista(nombreGasto, cantidadGasto);
       ui.imprimirRestante();
+      ui.insertarGastoLS(nombreGasto, cantidadGasto);
     }
     
   }else{
@@ -137,7 +150,7 @@ function compruebaDatos(e){
    }
 }
 
-function obtenerLocalStorage(){
+function obtenerPresuLocalStorage(){
    let localS;
    if (localStorage.getItem('datosLS') === null) {
       localS = false;
@@ -145,4 +158,33 @@ function obtenerLocalStorage(){
       localS = JSON.parse(localStorage.getItem('datosLS'));
    }
    return localS;
+}
+
+function obtenerGastosLocalStorage(){
+  let gastosLS;
+  //Comprobamos si tenemos items en el LS
+  if(localStorage.getItem('gastos') === null){
+    //si no hay gastos aún iniciamos un array vacio
+    gastosLS = [];
+  }else{
+    //recuperamos el localstorage
+    gastosLS = JSON.parse(localStorage.getItem('gastos'));
+  }
+  return gastosLS;
+}
+function leerLocalStorageGastos(){
+  let localS;
+  localS = obtenerGastosLocalStorage();
+  //Foreach con el html de los gastos
+
+
+}
+function guardarGastoLS(gasto){
+  let gastos;
+  //Obtenemos los gastos que ya estan en el LS
+  gastos = obtenerGastosLocalStorage();
+  //agregamos el nuevo gasto al array
+  gastos.push(gasto);
+  localStorage.setItem('gastos', JSON.stringify(gastos));
+  console.log(gastos);
 }
