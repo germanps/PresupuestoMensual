@@ -163,6 +163,15 @@ body{
 	background-color: #43ac6a;
 	background-color: rgba(67, 172, 106, 0.30000000000000004);  
 }
+.texto-danger{
+	border: 2px solid;
+	padding: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #dc0028;
+	background-color: #faaaa4;
+   background-color: rgba(244, 67, 54, 0.45);
+}
 h3.title{
 	font-size: 12px;
 	border-bottom: none;

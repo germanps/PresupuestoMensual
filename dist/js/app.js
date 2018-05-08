@@ -90,53 +90,58 @@ function agregaPresupuesto(e){
          //Pedimos el presupuesto al usuario
          presupuesto = prompt('Introduce el presupuesto del mes');
          compruebaDatos();
-      }else{
-         //Mostrar un error
-         console.log(presupuesto);
-         console.log('El presupuesto ya ha sido definido anteriormente');
       }
-   }else{
+
+  }else{
       //Si hay datos en el LS
-      alert('Ya tienes un presupuesto guardado');
+      const ui = new Interfaz();
+      ui.imprimirMensaje('Ya tienes un presupuesto definido!', 'error');
       return false;
-   }
+  }
    
 }
 function agregaGasto(e){
   const nombreGasto = document.getElementById('nombre').value;
   const cantidadGasto = document.getElementById('cantidad').value;
-  if (nombreGasto !== '' || cantidadGasto !== '') {
-    if (!/^([0-9])*$/.test(cantidadGasto)) {
-      alert('Cantidad erronea, prueba de nuevo');
-    }else{
-      //Todo OK => hacemos la mandanga
-      //console.log(`nombre:${nombreGasto} cantidad:${cantidadGasto}`);
-      //Obtenemos datos del LS
-      let localS = obtenerPresuLocalStorage();
-      //Reinstanciamos el presupuesto total con el nuevo restante
-      presupuestoTotal = new Presupuesto(localS.presupuesto, localS.restante);
-      //Restamos del presupuesto
-      presupuestoTotal.restaGasto(cantidadGasto);
-      //Volvemos a meter el objeto al local storage
-      localStorage.setItem('datosLS', JSON.stringify(presupuestoTotal));
-      console.log(presupuestoTotal);
-      const ui = new Interfaz();
-      ui.imprimirGastoLista(nombreGasto, cantidadGasto);
-      ui.imprimirRestante();
-      ui.insertarGastoLS(nombreGasto, cantidadGasto);
+  const compruebaPresuLS = obtenerPresuLocalStorage();
+  //Comprobamos que hay un presupuesto insertado
+  if (compruebaPresuLS) {  
+    if (nombreGasto !== '' || cantidadGasto !== '') {
+      if (!/^([0-9])*$/.test(cantidadGasto)) {
+        alert('Cantidad erronea, prueba de nuevo');
+      }else{
+        //Todo OK => hacemos la mandanga
+        //console.log(`nombre:${nombreGasto} cantidad:${cantidadGasto}`);
+        //Obtenemos datos del LS
+        let localS = obtenerPresuLocalStorage();
+        //Reinstanciamos el presupuesto total con el nuevo restante
+        presupuestoTotal = new Presupuesto(localS.presupuesto, localS.restante);
+        //Restamos del presupuesto
+        presupuestoTotal.restaGasto(cantidadGasto);
+        //Volvemos a meter el objeto al local storage
+        localStorage.setItem('datosLS', JSON.stringify(presupuestoTotal));
+        console.log(presupuestoTotal);
+        const ui = new Interfaz();
+        ui.imprimirGastoLista(nombreGasto, cantidadGasto);
+        ui.imprimirRestante();
+        ui.insertarGastoLS(nombreGasto, cantidadGasto);
+      }
     }
-    
+
   }else{
-    console.log('datos erroneos');
+    //Si no hay presupuesto imprimimos un mensaje de error
+    const ui = new Interfaz();
+    ui.imprimirMensaje('No hay presupuesto!', 'error');
   }
 }
 function compruebaDatos(e){
    if (!/^([0-9])*$/.test(presupuesto) || presupuesto === '') {
       //Error de entrada de datos por el prompt
-      alert(`Este presupuesto es incorrecto: ${presupuesto}, prueba de nuevo`);
+      const ui = new Interfaz();
+      ui.imprimirMensaje('Datos erroneos, prueba de nuevo!', 'error');
       //Reseteamos el presupuesto a blanco
       presupuesto = '';
-      agregaPresupuesto();//Volvemos a pedir el presupuesto
+
    }else{
       //Todo ok
       //Creamos la instacia del presupuesto(con el restante == al presupuesto)
