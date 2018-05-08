@@ -11,6 +11,8 @@ agregarPresupuesto.addEventListener('click', agregaPresupuesto, false);
 agregarGasto.addEventListener('click', agregaGasto, false);
 
 
+
+
 //clases
 class Presupuesto {
     constructor(presupuesto, restante){
@@ -45,11 +47,14 @@ class Interfaz {
      const listItem = document.createElement('li');
      listItem.className = 'gastos-item';
      listItem.innerHTML = `
-              <span class="nombre">${nombre}</span>
+            
+            <span class="nombre">${nombre}</span>
+            <div class="budget">
               <span class="cantidad">${cantidad}</span>
+              <span class="borrar-gasto">X</span>
+            </div>
           `;
       listado.appendChild(listItem);
-      console.log(listItem);
    }
    imprimirRestante(){
      const restante = document.getElementById('restante');
@@ -81,6 +86,9 @@ function cargaDatosInicio(){
    }
    //Cargar gastos del localStorage
    leerLocalStorageGastos();
+
+   //Listener para borrar los gastos
+  agregaListenersGastos();
 }
 function agregaPresupuesto(e){
    let datosLS = obtenerPresuLocalStorage();
@@ -133,6 +141,9 @@ function agregaGasto(e){
     const ui = new Interfaz();
     ui.imprimirMensaje('No hay presupuesto!', 'error');
   }
+
+   //Listener para borrar los gastos
+   agregaListenersGastos();
 }
 function compruebaDatos(e){
    if (!/^([0-9])*$/.test(presupuesto) || presupuesto === '') {
@@ -195,4 +206,22 @@ function guardarGastoLS(gasto){
   gastos.push(gasto);
   localStorage.setItem('gastos', JSON.stringify(gastos));
   console.log(gastos);
+}
+
+function borrarGastoLista(e){
+  const listItem = this.parentNode.parentNode;
+  console.log(listItem);
+  //console.log(this.classList);
+}
+
+function agregaListenersGastos(){
+  try {
+    const borrarGasto = document.querySelectorAll('.borrar-gasto');
+    borrarGasto.forEach(element => {
+      element.addEventListener('click', borrarGastoLista, false);
+    });
+    
+  } catch (error) {
+    
+  }
 }

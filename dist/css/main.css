@@ -179,7 +179,7 @@ h3.title{
 .gastos .gastos-item{
 		display: flex;
 		justify-content: space-between;
-		align-content: center;
+		align-items: center;
 		margin-bottom: 8px;
 		margin-bottom: .5rem;
 		//padding-bottom: 5px;
@@ -191,8 +191,13 @@ h3.title{
 			color: #6195ED;
 			font-weight: bold;
 		}
-.gastos .gastos-item span.cantidad{
-				border: 2px solid;
-    			padding: 0 16px;
-    			padding: 0 1rem;
+.gastos .gastos-item .budget{
+			border: 2px solid #6195ED;
+			display: flex;
+			justify-content: space-between;
+			padding: 2px 5px;
+			width: 100px;
+		}
+.gastos .gastos-item .budget .borrar-gasto{
+				cursor: pointer; 
 			}
