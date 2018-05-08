@@ -23,6 +23,9 @@ class Presupuesto {
     restaGasto(cantidad){
       return this.restante -= Number(cantidad);
     }
+    sumarGasto(cantidad){
+      return this.restante += Number(cantidad);
+    }
 }
 
 class Interfaz {
@@ -210,8 +213,20 @@ function guardarGastoLS(gasto){
 
 function borrarGastoLista(e){
   const listItem = this.parentNode.parentNode;
-  console.log(listItem);
-  //console.log(this.classList);
+  const nombre = listItem.querySelector('.nombre').innerText;
+  const gasto = listItem.querySelector('.budget .cantidad').innerText;
+  let gastos = obtenerGastosLocalStorage();
+  console.log(gastos);
+  gastos.forEach((element, index) => {
+    if (nombre === element.nombre || gasto === element.gasto) {
+      //Borramos el item del local storage
+      gastos.splice(index, 1);
+    }
+  });
+  localStorage.setItem('gastos', JSON.stringify(gastos));
+  //Ahora tenemos que sumar la cantidad restada al presupuesto
+  /* const presupuesto = new Presupuesto();
+  presupuesto.sumarGasto(gasto); */
 }
 
 function agregaListenersGastos(){
