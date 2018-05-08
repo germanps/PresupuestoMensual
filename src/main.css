@@ -80,7 +80,42 @@ body{
 	color: var(--chateaugreen);
 	background-color: color(var(--chateaugreen) alpha(-70%));  
 }
+.texto-danger{
+	border: 2px solid;
+	padding: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--monza);
+	background-color: color(var(--monza) alpha(-70%));  
+}
+
 h3.title{
 	font-size: 12px;
 	border-bottom: none;
+}
+
+
+
+
+.gastos {
+
+	.gastos-item{
+		display: flex;
+		justify-content: space-between;
+		align-content: center;
+		margin-bottom: .5rem;
+		//padding-bottom: 5px;
+		border-bottom: 1px solid var(--cornflowerblue);
+		padding: 5px;
+   	border: 1px solid #6195ED;
+
+		span{
+			color: var(--cornflowerblue);
+			font-weight: bold;
+			&.cantidad{
+				border: 2px solid;
+    			padding: 0 1rem;
+			}
+		}
+	}
 }

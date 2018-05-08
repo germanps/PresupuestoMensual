@@ -181,7 +181,10 @@ function leerLocalStorageGastos(){
   let localS;
   localS = obtenerGastosLocalStorage();
   //Foreach con el html de los gastos
-
+  const ui = new Interfaz();
+  localS.forEach( (gasto) => {
+    ui.imprimirGastoLista(gasto.nombre, gasto.gasto);
+  });
 
 }
 function guardarGastoLS(gasto){
